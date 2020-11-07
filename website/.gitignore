@@ -1,0 +1,6 @@
+# NPM dependencies
+node_modules
+
+# Hugo generated folders
+public
+resources

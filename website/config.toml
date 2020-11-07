@@ -1,0 +1,7 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "0x46"
+
+[module]
+[[module.imports]]
+path = "github.com/gohugoio/hugo-mod-bootstrap-scss-v4"

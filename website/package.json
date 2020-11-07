@@ -1,0 +1,32 @@
+{
+  "name": "Kaizen",
+  "version": "0.0.1",
+  "private": true,
+  "browserslist": [
+    "defaults"
+  ],
+  "scripts": {
+    "start": "hugo server --disableFastRender --buildDrafts",
+    "build": "hugo --gc --minify",
+    "clean": "rimraf public resources",
+    "lint": "npm run -s lint:styles && npm run -s lint:markdown",
+    "lint:styles": "stylelint \"assets/scss/**/*.scss\"",
+    "lint:markdown": "markdownlint *.md content/**/*.md",
+    "test": "npm run -s lint"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11",
+    "@babel/core": "^7.11",
+    "@babel/preset-env": "^7.11",
+    "@fullhuman/postcss-purgecss": "^3.0",
+    "autoprefixer": "^10.0",
+    "eslint": "^7.10",
+    "markdownlint-cli": "^0.23",
+    "postcss": "^8.1.1",
+    "postcss-cli": "^8.1.1",
+    "rimraf": "^3.0",
+    "stylelint": "^13.7",
+    "stylelint-config-standard": "^20.0",
+    "uncss": "github:uncss/uncss#d0adf4b"
+  }
+}

@@ -1,0 +1,21 @@
+{{ if eq (hugo.Environment) "development" }}
+
+    {{ $options := (dict "targetPath" "main.css" "enableSourceMap" true) }}
+
+    {{ $css := resources.Get "scss/main.scss" | toCSS $options }}
+
+    <link rel="stylesheet" href="{{ $css.Permalink }}">
+
+{{ else -}}
+
+    {{ $cssOptions := (dict "targetPath" "main.css" "outputStyle" "compressed") }}
+
+    {{ $postCssOptions := (dict "config" "config/postcss.config.js" "noMap" true) }}
+
+    {{ $css := resources.Get "scss/main.scss" | toCSS $cssOptions | postCSS $postCssOptions | minify }}
+
+    {{ $secureCss := $css | resources.Fingerprint "sha512" }}
+
+    <link rel="stylesheet" href="{{ $secureCss.Permalink }}" integrity="{{ $secureCss.Data.Integrity }}" crossorigin="anonymous"/>
+
+{{ end -}}

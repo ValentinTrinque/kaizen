@@ -1,0 +1,24 @@
+{{ define "main" }}
+<main class="container">
+    <header>
+        <h1>{{.Title}}</h1>
+    </header>
+    {{ range .Pages.ByLastmod }}
+    <article>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{.Title}}</h5>
+            <ul class="list-inline">
+                {{- range (.GetTerms "tags") -}}
+                    <li class="list-inline-item"><span class="badge rounded-pill bg-info">{{- .LinkTitle -}}</span></li>
+                {{- end -}}
+            </ul>
+            <p class="card-text">{{.Description}}</p>
+            <p class="card-text"><small class="text-muted">Last updated: {{.Date.Format "2006-01-02"}}</small></p>
+            <a href="{{.Permalink}}" class="card-link">Read</a>
+          </div>
+        </div>
+    </article>
+    {{ end }}
+</main>
+{{ end }}
